@@ -13,7 +13,7 @@ Identify the POD which is 'prod', part of 'finance' BU and is a 'frontend' tier?
 kubectl get all --selector env=prod,bu=finance,tier=frontend
 ```
 
-## Create a taint on node01 with key of 'spray', value of 'mortein' and effect of ‘NoSchedule'
+Create a taint on node01 with key of 'spray', value of 'mortein' and effect of ‘NoSchedule'
 ```
 kubectl taint nodes node01 spray=mortein:NoSchedule
 node/node01 tainted
