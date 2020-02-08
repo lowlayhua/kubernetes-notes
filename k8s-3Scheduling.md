@@ -1,8 +1,47 @@
 # 3. Scheduling
+## manual scheduling
+```
+nodeName: node02
+```
+## Label and selector
+We have deployed a number of PODs. They are labelled with 'tier', 'env' and 'bu'. How many PODs exist in the 'dev' environment?
+```
+kubectl get pods --selector env=dev
+```
+Identify the POD which is 'prod', part of 'finance' BU and is a 'frontend' tier?
+```
+kubectl get all --selector env=prod,bu=finance,tier=frontend
+```
+
 ## Create a taint on node01 with key of 'spray', value of 'mortein' and effect of ‘NoSchedule'
 ```
 kubectl taint nodes node01 spray=mortein:NoSchedule
 node/node01 tainted
+```
+
+Create another pod named 'bee' with the NGINX image, which has a toleration set to the taint Mortein
+info_outline
+Hint
+Answer file at /var/answers/bee.yaml
+Image name: nginx
+Key: spray
+Value: mortein
+Effect: NoSchedule
+Status: Running
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: bee
+spec:
+  containers:
+  - image: nginx
+    name: bee
+  tolerations:
+  - key: spray
+    value: mortein
+    effect: NoSchedule
+    operator: Equal
 ```
 ## Node Affinity
 Which nodes are the PODs placed on? 
