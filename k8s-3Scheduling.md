@@ -127,30 +127,3 @@ We just created a new static pod named static-greenbox. Find it and delete it.
 ```
 Identify which node the static pod is created on, ssh to the node and delete the pod definition file. If you don't know theIP of the node, run the kubectl get nodes -o wide command and identify the IP. Then SSH to the node using that IP. For static pod manifest path look at the file /var/lib/kubelet/config.yaml on node01
 ```
-
-master $ kubectl get node node01  --show-labels
-NAME      STATUS    ROLES     AGE       VERSION   LABELS
-node01    Ready     <none>    48m       v1.11.3   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,kubernetes.io/hostname=node01
-master $ kubectl label node01 color=blue
-
-master $ kubectl label node node01 color=blue
-node/node01 labeled
-```
-### Create a new deployment named 'blue' with the NGINX image and 6 replicas
-```
-kubectl run blue --image=nginx --replicas=6
-```
-### Deploy a pod named nginx-pod using the nginx:alpine image.
-```
-kubectl run --generator=run-pod/v1 nginx-pod --image=nginx:alpine
-kubectl run --generator=run-pod/v1 redis --image=redis:alpine --labels=tier=db
-```
-### Create a deployment named webapp using the image kodekloud/webapp-color with 3 replicas
-```
-master $ kubectl create deployment webapp --image=kodekloud/webapp-color
-master $ kubectl scale deployment.apps/webapp --replicas=3
-```
-### Expose the webapp as service webapp-service application on port 30082 on the nodes on the cluster. 
-```
-kubectl expose deployment webapp --type=NodePort --port=8080 --name=webapp-service --dry-run -o yaml > webapp-service.yaml
-```
