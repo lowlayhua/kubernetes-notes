@@ -3,7 +3,7 @@
 ```
 kubectl taint nodes node01 spray=mortein:NoSchedule
 node/node01 tainted
-
+```
 ## Node Affinity
 Which nodes are the PODs placed on? 
 
