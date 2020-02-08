@@ -1,4 +1,4 @@
-# Storage
+# 8. Storage
 ```
 kubectl get pvc
 kubectl get pv
