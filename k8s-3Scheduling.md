@@ -43,6 +43,11 @@ spec:
     effect: NoSchedule
     operator: Equal
 ```
+Remove the taint on master, which currently has the taint effect of NoSchedule
+```
+kubectl taint node master node-role.kubernetes.io/master:NoSchedule-
+node/master untainted
+```
 ## Node Affinity
 Which nodes are the PODs placed on? 
 
