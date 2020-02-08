@@ -1,0 +1,22 @@
+# 1. Core Concepts
+## Create a new pod with the NGINX image
+```
+kubectl run --generator=run-pod/v1 nginx --image=nginx
+kubectl run --generator=run-pod/v1 redis --image=redis123
+```
+# replicasets
+```
+apiVersion: apps/v1
+kind: ReplicaSet
+```
+# Now scale the ReplicaSet down to 2 PODs
+```
+master $ kubectl get rs
+NAME              DESIRED   CURRENT   READY   AGE
+new-replica-set   5         5         5       4m
+master $ kubectl scale --replicas=2 replicaset.apps/new-replica-set
+replicaset.apps/new-replica-set scaled
+master $ kubectl get rs
+NAME              DESIRED   CURRENT   READY   AGE
+new-replica-set   2         2         2       4m11s
+```
