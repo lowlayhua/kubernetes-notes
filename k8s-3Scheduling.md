@@ -88,10 +88,20 @@ spec:
                 values:
                 - blue
 ```
-### Create a new deployment named 'red' with the NGINX image and 3 replicas, and ensure it gets placed on the master node only.
 
+Create a new deployment named 'red' with the NGINX image and 3 replicas, and ensure it gets placed on the master node only.
 Use the label - node-role.kubernetes.io/master - set on the master node.
+info_outline
+Hint
+Answer file at /var/answers/red-deployment.yaml
+Name: red
+Replicas: 3
+Image: nginx
+NodeAffinity: requiredDuringSchedulingIgnoredDuringExecution
+Key: node-role.kubernetes.io/master
+Use the right operator
 
+```
  affinity:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
@@ -99,8 +109,25 @@ Use the label - node-role.kubernetes.io/master - set on the master node.
             - matchExpressions:
               - key: node-role.kubernetes.io/master
                 operator: Exists
-Apply a label color=blue to node node01
 ```
+## Resource Limits
+
+## Daemonsets
+What is the image used by the POD deployed by the weave-net DaemonSet?
+```
+kubectl describe daemonset weave-net --namespace=kube-system
+```
+
+# Static Pods - don't know
+Create a static pod named static-busybox that uses the busybox image and the command sleep 1000
+```
+kubectl run --restart=Never --image=busybox static-busybox --dry-run -o yaml --command -- sleep 1000 > /etc/kubernetes/manifests/static-busybox.yaml
+```
+We just created a new static pod named static-greenbox. Find it and delete it.
+```
+Identify which node the static pod is created on, ssh to the node and delete the pod definition file. If you don't know theIP of the node, run the kubectl get nodes -o wide command and identify the IP. Then SSH to the node using that IP. For static pod manifest path look at the file /var/lib/kubelet/config.yaml on node01
+```
+
 master $ kubectl get node node01  --show-labels
 NAME      STATUS    ROLES     AGE       VERSION   LABELS
 node01    Ready     <none>    48m       v1.11.3   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,kubernetes.io/hostname=node01
