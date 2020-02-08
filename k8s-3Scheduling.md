@@ -49,7 +49,6 @@ kubectl taint node master node-role.kubernetes.io/master:NoSchedule-
 node/master untainted
 ```
 ## Node Affinity
-Which nodes are the PODs placed on? 
 
 Set Node Affinity to the deployment to place the PODs on node01 only
 
@@ -61,7 +60,24 @@ Set Node Affinity to the deployment to place the PODs on node01 only
 * values: blue
 
 ```
-  spec:
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: blue
+spec:
+  replicas: 6
+  selector:
+    matchLabels:
+      run: nginx
+  template:
+    metadata:
+      labels:
+        run: nginx
+    spec:
+      containers:
+      - image: nginx
+        imagePullPolicy: Always
+        name: nginx
       affinity:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
