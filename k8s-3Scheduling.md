@@ -20,9 +20,7 @@ node/node01 tainted
 ```
 
 Create another pod named 'bee' with the NGINX image, which has a toleration set to the taint Mortein
-info_outline
-Hint
-Answer file at /var/answers/bee.yaml
+
 Image name: nginx
 Key: spray
 Value: mortein
@@ -91,15 +89,13 @@ spec:
 
 Create a new deployment named 'red' with the NGINX image and 3 replicas, and ensure it gets placed on the master node only.
 Use the label - node-role.kubernetes.io/master - set on the master node.
-info_outline
-Hint
-Answer file at /var/answers/red-deployment.yaml
+
 Name: red
 Replicas: 3
 Image: nginx
 NodeAffinity: requiredDuringSchedulingIgnoredDuringExecution
 Key: node-role.kubernetes.io/master
-Use the right operator
+
 
 ```
  affinity:
@@ -127,3 +123,12 @@ We just created a new static pod named static-greenbox. Find it and delete it.
 ```
 Identify which node the static pod is created on, ssh to the node and delete the pod definition file. If you don't know theIP of the node, run the kubectl get nodes -o wide command and identify the IP. Then SSH to the node using that IP. For static pod manifest path look at the file /var/lib/kubelet/config.yaml on node01
 ```
+## Multiply scheduler
+Deploy an additional scheduler to the cluster following the given specification.
+
+Use the manifest file used by kubeadm tool. Use a different port than the one used by the current one.
+
+Namespace: kube-system
+Name: my-scheduler
+Status: Running
+Custom Scheduler Name
