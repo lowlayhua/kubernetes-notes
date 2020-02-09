@@ -183,5 +183,4 @@ status: {}
 ```
 # Don't know
 A POD definition file is given. Use it to create a POD with the new custom scheduler.
-
 File is located at /root/nginx-pod.yaml
