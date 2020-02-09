@@ -128,7 +128,7 @@ Identify which node the static pod is created on, ssh to the node and delete the
 Deploy an additional scheduler to the cluster following the given specification.
 Use the manifest file used by kubeadm tool. Use a different port than the one used by the current one.
 
-Namespace: kube-system
-Name: my-scheduler
-Status: Running
-Custom Scheduler Name
+* Namespace: kube-system
+* Name: my-scheduler
+* Status: Running
+* Custom Scheduler Name
