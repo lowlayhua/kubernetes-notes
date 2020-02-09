@@ -124,8 +124,8 @@ We just created a new static pod named static-greenbox. Find it and delete it.
 Identify which node the static pod is created on, ssh to the node and delete the pod definition file. If you don't know theIP of the node, run the kubectl get nodes -o wide command and identify the IP. Then SSH to the node using that IP. For static pod manifest path look at the file /var/lib/kubelet/config.yaml on node01
 ```
 ## Multiply scheduler
-Deploy an additional scheduler to the cluster following the given specification.
 
+Deploy an additional scheduler to the cluster following the given specification.
 Use the manifest file used by kubeadm tool. Use a different port than the one used by the current one.
 
 Namespace: kube-system
