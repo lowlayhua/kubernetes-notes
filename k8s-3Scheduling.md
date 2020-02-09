@@ -16,16 +16,15 @@ kubectl get all --selector env=prod,bu=finance,tier=frontend
 Create a taint on node01 with key of 'spray', value of 'mortein' and effect of ‘NoSchedule'
 ```
 kubectl taint nodes node01 spray=mortein:NoSchedule
-node/node01 tainted
 ```
 
 Create another pod named 'bee' with the NGINX image, which has a toleration set to the taint Mortein
 
-Image name: nginx
-Key: spray
-Value: mortein
-Effect: NoSchedule
-Status: Running
+* Image name: nginx
+* Key: spray
+* Value: mortein
+* Effect: NoSchedule
+* Status: Running
 ```
 apiVersion: v1
 kind: Pod
@@ -90,11 +89,11 @@ spec:
 Create a new deployment named 'red' with the NGINX image and 3 replicas, and ensure it gets placed on the master node only.
 Use the label - node-role.kubernetes.io/master - set on the master node.
 
-Name: red
-Replicas: 3
-Image: nginx
-NodeAffinity: requiredDuringSchedulingIgnoredDuringExecution
-Key: node-role.kubernetes.io/master
+- Name: red
+- Replicas: 3
+- Image: nginx
+- NodeAffinity: requiredDuringSchedulingIgnoredDuringExecution
+- Key: node-role.kubernetes.io/master
 
 
 ```
