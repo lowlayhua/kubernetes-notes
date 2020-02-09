@@ -123,7 +123,7 @@ We just created a new static pod named static-greenbox. Find it and delete it.
 ```
 Identify which node the static pod is created on, ssh to the node and delete the pod definition file. If you don't know theIP of the node, run the kubectl get nodes -o wide command and identify the IP. Then SSH to the node using that IP. For static pod manifest path look at the file /var/lib/kubelet/config.yaml on node01
 ```
-## Multiply scheduler
+## Multiple scheduler
 
 Deploy an additional scheduler to the cluster following the given specification.
 Use the manifest file used by kubeadm tool. Use a different port than the one used by the current one.
@@ -132,3 +132,57 @@ Use the manifest file used by kubeadm tool. Use a different port than the one us
 * Name: my-scheduler
 * Status: Running
 * Custom Scheduler Name
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    scheduler.alpha.kubernetes.io/critical-pod: ""
+  creationTimestamp: null
+  labels:
+    component: my-scheduler
+    tier: control-plane
+  name: my-scheduler
+  namespace: kube-system
+spec:
+  containers:
+  - command:
+    - kube-scheduler
+    - --address=127.0.0.1
+    - --kubeconfig=/etc/kubernetes/scheduler.conf
+    - --leader-elect=false
+    - --port=10282
+    - --scheduler-name=my-scheduler
+    - --secure-port 0
+    image: k8s.gcr.io/kube-scheduler-amd64:v1.16.0
+    imagePullPolicy: IfNotPresent
+    livenessProbe:
+      failureThreshold: 8
+      httpGet:
+        host: 127.0.0.1
+        path: /healthz
+        port: 10282
+        scheme: HTTP
+      initialDelaySeconds: 15
+      timeoutSeconds: 15
+    name: kube-scheduler
+    resources:
+      requests:
+        cpu: 100m
+    volumeMounts:
+    - mountPath: /etc/kubernetes/scheduler.conf
+      name: kubeconfig
+      readOnly: true
+  hostNetwork: true
+  priorityClassName: system-cluster-critical
+  volumes:
+  - hostPath:
+      path: /etc/kubernetes/scheduler.conf
+      type: FileOrCreate
+    name: kubeconfig
+status: {}
+```
+# Don't know
+A POD definition file is given. Use it to create a POD with the new custom scheduler.
+
+File is located at /root/nginx-pod.yaml
