@@ -1,13 +1,21 @@
 # Kubernetes Best Practices
 ## Setting Resources and limits in Kubernetes
-ResourceQuotas
+ResourceQuotas (namespaces)
+- Put quotas in dev env, don't put in production
 ```
+kind: ResourceQuota
 spec:
   hard:
     requests.cpu: 500m
     requests.memory: 100Mib
     limits.cpu: 700m
     limits.memory: 500Mib
+ ```
+ Limitrange - individual containers
+ ```
+ spec: 
+ limits:
+ -
  ```
  
 ## Upgrading Kubernetes clusters with zero downtime: GCP
