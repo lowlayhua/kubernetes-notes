@@ -1,4 +1,15 @@
 # Kubernetes Best Practices
+## Setting Resources and limits in Kubernetes
+ResourceQuotas
+```
+spec:
+  hard:
+    requests.cpu: 500m
+    requests.memory: 100Mib
+    limits.cpu: 700m
+    limits.memory: 500Mib
+ ```
+ 
 ## Upgrading Kubernetes clusters with zero downtime: GCP
 * Step 1 - Master
 ```
