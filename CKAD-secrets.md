@@ -15,6 +15,14 @@ data:
  
 # Define in the Pod defination file.
 ```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: envfrom-secret
+spec:
+  containers:
+  - name: envars-test-container
+    image: nginx
 envFrom:
     - secretRef:
         name: db-secret
