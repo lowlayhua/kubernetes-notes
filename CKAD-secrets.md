@@ -23,7 +23,7 @@ spec:
   containers:
   - name: envars-test-container
     image: nginx
-envFrom:
+    envFrom:
     - secretRef:
         name: db-secret
 ```
