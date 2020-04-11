@@ -14,7 +14,8 @@ data:
 ```
  
 # Define in the Pod defination file.
-```envFrom:
+```
+envFrom:
     - secretRef:
         name: db-secret
 ```
