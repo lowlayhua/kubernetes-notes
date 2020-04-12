@@ -117,3 +117,29 @@ spec:
               - key: node-role.kubernetes.io/master
                 operator: Exists
 ```
+# Deployment
+```
+k rollout status deployment/meister-api-meister -n api
+k rollout history  deployment/meister-api-meister -n api
+```
+# Job
+```
+Job Name: throw-dice-job
+Image Name: kodekloud/throw-dice
+Completions: 3
+```
+```
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: throw-dice-job
+spec:
+  completions: 3
+  backoffLimit: 25 # This is so the job does not quit before it succeeds.
+  template:
+    spec:
+      containers:
+      - name: math-add
+        image: kodekloud/throw-dice
+      restartPolicy: Never
+```
