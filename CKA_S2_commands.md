@@ -17,3 +17,4 @@
 ```kubectl create service clusterip redis --tcp=6379:6379 --dry-run=client -o yaml```
 
 ```kubectl expose pod nginx --port=80 --name nginx-service --type=NodePort --dry-run=client -o yaml```
+```kubectl run redis --image=redis:alpine -l tier=db```
