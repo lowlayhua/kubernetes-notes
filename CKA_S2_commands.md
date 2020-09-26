@@ -12,7 +12,9 @@
 # Create a Service named redis-service of type ClusterIP to expose pod redis on port 6379
 *This will automatically use the pod's labels as selectors*
 
-```kubectl expose pod redis --port=6379 --name redis=service --dry-run=client -o yaml```
+```kubectl expose pod redis --port=6379 --name redis-service --dry-run=client -o yaml```
+
+```k expose pod redis --port=6379 --name=redis-service -l tier=db```
 
 ```kubectl create service clusterip redis --tcp=6379:6379 --dry-run=client -o yaml```
 
