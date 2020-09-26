@@ -46,6 +46,8 @@ kubectl taint node master node-role.kubernetes.io/master:NoSchedule-
 node/master untainted
 ```
 ## Node Affinity
+Apply a label color=blue to node node01
+``'kubectl label node node01 color=blue```
 
 Set Node Affinity to the deployment to place the PODs on node01 only
 
