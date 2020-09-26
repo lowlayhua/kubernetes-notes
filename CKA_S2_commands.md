@@ -1,3 +1,5 @@
+# Create Namespace
+```k create ns dev-ns```
 # Create an NGINX Pod
 ``` kubectl run nginx --image=ngnix```
 # Don't create 
