@@ -6,8 +6,8 @@
 ```kubectl create deployment --image=nginx nginx```
 
 # dry run
-```kubectl create deployment --image=nginx nginx --dry-run=client -o yaml > outfile.yaml
-```
+```kubectl create deployment --image=nginx nginx --dry-run=client -o yaml > outfile.yaml```
+
 
 # Create a Service named redis-service of type ClusterIP to expose pod redis on port 6379
 *This will automatically use the pod's labels as selectors*
