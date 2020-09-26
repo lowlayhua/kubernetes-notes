@@ -22,3 +22,6 @@
 
 ```kubectl expose pod nginx --port=80 --name nginx-service --type=NodePort --dry-run=client -o yaml```
 ```kubectl run redis --image=redis:alpine -l tier=db```
+
+### Create a pod called httpd using the image httpd:alpine. create a service of type ClusterIP by the same name (httpd). The target port for the service should be 80.
+```kubectl run httpd --image=httpd:alpine --port=80 --expose```
