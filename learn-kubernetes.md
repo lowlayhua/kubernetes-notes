@@ -76,6 +76,7 @@ export NODE_PORT=$(kubectl get services/kubernetes-bootcamp -o go-template='{{(i
 echo NODE_PORT=$NODE_PORT
 ```
 ## scaling apps
+```
 kubectl get deployments
 kubectl scale deployments/kubernetes-bootcamp --replicas=4
 kubectl get deployments
