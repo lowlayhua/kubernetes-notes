@@ -1,8 +1,19 @@
 # Notes for ~/.kube/config
 ```
 k config view
-k config use-context user@cluster
+k config --kubeconfig=/root/my-kube-config use-context research
+k config --kubeconfig=/root/my-kube-config get-contexts
+
 ```
+# RBAC
+```
+k describe role-binding kube-proxy -n kube-system
+```
+# check crt
+```
+openssl x509 -in server.crt -text -noout
+```
+
 # base64
 ```
 cat " xxx"  | base64
