@@ -9,7 +9,7 @@ metadata:
 data:
   DB_Host: c3FsMDEK
   DB_User: cm9vdAo=
-  DB_Password: cGFzc3dvcmQxMjMK
+  DB_Password: XXX
 ```
  
 # Define in the Pod defination file.
