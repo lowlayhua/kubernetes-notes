@@ -3,13 +3,15 @@
 - Set appropriate resource limits and requests.
 - Set your container resources to use the same amount of memory for both requests and limits and a bigger or unbounded CPU limit.
 
-Note: For autopilot, please refer to the document for more details.
+# autopilot
+- https://cloud.google.com/kubernetes-engine/docs/concepts/autopilot-resource-requests
+
 - Ensure your container image is lean to avoid scale-up latency. 
-- Bonus Tip : Use [dive](https://github.com/wagoodman/dive) to find ways to shrink your image. 
+- Use [dive](https://github.com/wagoodman/dive) to find ways to shrink your image. 
 - [Hadolint] (https://hadolint.github.io/hadolint/)  to run best practice container images.
 
 
-Use GKE streaming for fast application startup. 
+# Use GKE streaming for fast application startup. 
 Meaningful readiness and liveliness probes (document). 
 Readiness probes - a must for all containers. This helps load balancer to understand whether to send traffic or not. 
 Liveliness probes - this will help to trigger self healing as will know when to restart the pods.
