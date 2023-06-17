@@ -8,7 +8,7 @@
 
 - Ensure your container image is lean to avoid scale-up latency. 
 - Use [dive](https://github.com/wagoodman/dive) to find ways to shrink your image. 
-- [Hadolint] (https://hadolint.github.io/hadolint/)  to run best practice container images.
+- [Hadolint](https://hadolint.github.io/hadolint/)  to run best practice container images.
 
 
 # Use GKE streaming for fast application startup. 
