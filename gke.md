@@ -33,7 +33,7 @@
 
 - For example, if you expect a growth of 30% in your requests and you want to avoid reaching 100% of CPU by defining a 10% safety buffer, your formula would look like this:
 
-(1 - 0.1)/(1 + 0.3) = 0.69
+        (1 - 0.1)/(1 + 0.3) = 0.69
 
 # Enable tracing to understand choke points in the application
 
