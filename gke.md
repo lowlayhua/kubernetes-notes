@@ -1,11 +1,9 @@
 # GKE best practices
-
 - Set appropriate resource limits and requests.
 - Set your container resources to use the same amount of memory for both requests and limits and a bigger or unbounded CPU limit.
+- [autopilot](https://cloud.google.com/kubernetes-engine/docs/concepts/autopilot-resource-requests)
 
-# autopilot
-- https://cloud.google.com/kubernetes-engine/docs/concepts/autopilot-resource-requests
-
+# Container Image
 - Ensure your container image is lean to avoid scale-up latency. 
 - Use [dive](https://github.com/wagoodman/dive) to find ways to shrink your image. 
 - [Hadolint](https://hadolint.github.io/hadolint/)  to run best practice container images.
@@ -23,10 +21,11 @@
 
 ### Liveliness probes 
 - this will help to trigger self healing as will know when to restart the pods.
-- Fine-tune the HPA utilization target.
+
+# Fine-tune the HPA utilization target.
 - The following equation is a simple and safe way to find a good CPU target: 
 
-(1 - BUFF)/(1 + PERC)
+          (1 - BUFF)/(1 + PERC)
 
 - BUFF is a safety buffer that you can set to avoid reaching 100% CPU.
 - This variable is useful because reaching 100% CPU means that the latency of request processing is much higher than usual. 
@@ -36,10 +35,18 @@
 
 (1 - 0.1)/(1 + 0.3) = 0.69
 
-- Enable tracing to understand choke points in the application
-- Group or separate workloads as needed. 
-- Consider retries with exponential back off using ASM. 
-- Capacity buffers to deal with spiky burst of traffic with the help of balloon pods
-- Enable VPA in recommendation mode
+# Enable tracing to understand choke points in the application
+
+# Group or separate workloads as needed. 
+- https://wdenniss.com/autopilot-workload-separation
+
+#  Consider retries with exponential back off using ASM.
+- https://istio.io/latest/docs/concepts/traffic-management/#retries
+  
+#  Capacity buffers to deal with spiky burst of traffic with the help of balloon pods
+- https://wdenniss.com/gke-autopilot-spare-capacity
+  
+#  Enable VPA in recommendation mode 
+- https://cloud.google.com/kubernetes-engine/docs/concepts/verticalpodautoscaler
 
 
